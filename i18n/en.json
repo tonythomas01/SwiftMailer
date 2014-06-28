@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "Tony Thomas"
+        ]
+    },
+    "swiftmailer-desc": "This extension provides an Alternate mailer for MediaWiki",
+    "swiftmailer-smtp-error": "Error setting up SMTP transport for SwiftMailer due to $1 ",
+    "swiftmailer-send-error": "Error sending email using SwfitMailer due to $1"
+}

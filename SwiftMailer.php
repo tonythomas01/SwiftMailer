@@ -9,7 +9,7 @@ $wgExtensionCredits['other'][] = array(
 		'Tony Thomas'
 	),
 	'url' => "https://github.com/tonythomas01/SwiftMailer",
-	'description' => 'This extension provides an Alternate mailer for MediaWiki',
+	'descriptionmsg' => 'swiftmailer-desc',
 	'version'  => '1.0',
 	'license-name' => "GPL V2.0",
 );
@@ -22,6 +22,9 @@ $wgAutoloadClasses['SwiftMailerHooks'] =  $dir. '/SwiftMailerHooks.php';
 
 //Register Hooks
 $wgHooks['AlternateUserMailer'][] = 'SwiftMailerHooks::UseSwiftMailer';
+
+/*Messages Files */
+$wgMessagesDirs['SwiftMailer'] = $dir. '/i18n';
 
 require_once( "SwiftMailerClass/lib/swift_required.php" );
 

@@ -1,5 +1,14 @@
 <?php
 class SwiftMailerHooks {
+	/**
+	 * Creates and sends a mail using SwiftMailer
+	 * @param string $headers
+	 * @param string $to
+	 * @param string $from
+	 * @param string $subject
+	 * @param string $body
+	 * @return bool|Status
+	 */
 	public static function UseSwiftMailer ( $headers, $to, $from, $subject, $body ) {
 		$message = Swift_Message::newInstance()
 				->setSubject( $subject )
@@ -7,7 +16,7 @@ class SwiftMailerHooks {
 				->setBody( $body );
 
 		$returnPath = $headers['Return-Path'];
-		//$message->setReturnPath( $returnPath );
+		$message->setReturnPath( $returnPath );
 
 		$transport = self::getSwiftMailer();
 		// Create the SwiftMailer::Mailer Object using the above Transport
@@ -43,7 +52,7 @@ class SwiftMailerHooks {
 			}
 		} catch ( Swift_TransportException $e ) {
 			wfDebug( "SWIFT::Mail SMTP configuration failed \n" );
-			return Status::newFatal( 'swift-mail-error', $e );
+			return Status::newFatal( 'swiftmailer-smtp-error', $e );
 		}
 		return $transport;
 	}
@@ -60,7 +69,7 @@ class SwiftMailerHooks {
 			$mailResult = $mailer->send( $message );
 		} catch ( Swit_SwiftException $e ) {
 			wfDebug( "Swift Mailer failed: ". $e. "\n" );
-			return Status::newFatal( 'swift-mail-error', $e );
+			return Status::newFatal( 'swiftmailer-send-error', $e );
 		}
 		return Status::newGood();
 	}
