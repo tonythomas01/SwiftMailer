@@ -23,3 +23,5 @@ $wgAutoloadClasses['SwiftMailerHooks'] =  $dir. '/SwiftMailerHooks.php';
 //Register Hooks
 $wgHooks['AlternateUserMailer'][] = 'SwiftMailerHooks::UseSwiftMailer';
 
+require_once( "SwiftMailerClass/lib/swift_required.php" );
+

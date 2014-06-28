@@ -1,16 +1,13 @@
 <?php
-$dir = __DIR__ ;
-require_once( "SwiftMailerClass/lib/SwiftMailer/swift_required.php" );
 class SwiftMailerHooks {
 	public static function UseSwiftMailer ( $headers, $to, $from, $subject, $body ) {
-		echo "inside swiftmailer";
 		$message = Swift_Message::newInstance()
 				->setSubject( $subject )
 				->setFrom( array( $from->address => $from->name ) )
 				->setBody( $body );
 
 		$returnPath = $headers['Return-Path'];
-		$message->setReturnPath( $returnPath );
+		//$message->setReturnPath( $returnPath );
 
 		$transport = self::getSwiftMailer();
 		// Create the SwiftMailer::Mailer Object using the above Transport
